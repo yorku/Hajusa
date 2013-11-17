@@ -1,0 +1,19 @@
+CREATE TABLE document (
+	id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(25) NOT NULL,
+    description VARCHAR(50) NOT NULL,
+	created_date DATE NOT NULL,
+	catalog_id INT NOT NULL,
+FOREIGN KEY (catalog_id) REFERENCES catalog(id),
+PRIMARY KEY (id),
+UNIQUE KEY unique_document (name, catalog_id));
+
+CREATE TABLE catalog (
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(25) NOT NULL UNIQUE,
+	created_date DATE NOT NULL,
+	document_count INT NOT NULL DEFAULT 0,
+PRIMARY KEY (id));
+
+DROP TABLE document;
+DROP TABLE catalog;
